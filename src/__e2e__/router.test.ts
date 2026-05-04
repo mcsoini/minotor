@@ -3,6 +3,10 @@ import { describe, it } from 'node:test';
 
 import fs from 'fs';
 
+import type {
+  ServiceRouteInfo,
+  TransferType as TransferTypeString,
+} from '../router.js';
 import {
   Query,
   RangeQuery,
@@ -21,13 +25,13 @@ type ExpectedVehicleLeg = {
   to: StopRef;
   departure: string;
   arrival: string;
-  route: { type: string; name: string };
+  route: ServiceRouteInfo;
 };
 
 type ExpectedTransferLeg = {
   from: StopRef;
   to: StopRef;
-  type: string;
+  type: TransferTypeString;
   minTransferTime?: number;
 };
 

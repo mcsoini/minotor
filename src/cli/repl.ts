@@ -4,14 +4,8 @@ import fs from 'fs';
 
 import { Query, RangeQuery, Router, StopsIndex, Timetable } from '../router.js';
 import type { Stop } from '../stops/stops.js';
-import {
-  MUST_COORDINATE_WITH_DRIVER,
-  MUST_PHONE_AGENCY,
-  NOT_AVAILABLE,
-  RawPickUpDropOffType,
-  REGULAR,
-} from '../timetable/route.js';
-import { Route } from '../timetable/route.js';
+import type { RawPickUpDropOffType } from '../timetable/route.js';
+import { PickUpDropOffTypes, Route } from '../timetable/route.js';
 import { timeFromString, timeToString } from '../timetable/time.js';
 import { plotGraphToDotFile } from './utils.js';
 
@@ -306,13 +300,13 @@ export const startRepl = (stopsPath: string, timetablePath: string) => {
 
   const formatPickupDropoffType = (type: RawPickUpDropOffType): string => {
     switch (type) {
-      case REGULAR:
+      case PickUpDropOffTypes.REGULAR:
         return 'R';
-      case NOT_AVAILABLE:
+      case PickUpDropOffTypes.NOT_AVAILABLE:
         return 'N';
-      case MUST_PHONE_AGENCY:
+      case PickUpDropOffTypes.MUST_PHONE_AGENCY:
         return 'A';
-      case MUST_COORDINATE_WITH_DRIVER:
+      case PickUpDropOffTypes.MUST_COORDINATE_WITH_DRIVER:
         return 'D';
       default:
         return '?';
